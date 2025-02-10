@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+</head>
+<body>
+
+    <h2>Character and Word Counter</h2>
+
+    <textarea id="textInput" rows="5" cols="50" oninput="countText()"></textarea>
+
+    <h3>Character Count: <span id="charCount">0</span></h3>
+    <h3>Word Count: <span id="wordCount">0</span></h3>
+    <h3>Repeated Words: <span id="repeatedWords"></span></h3>
+
+    <script>
+        function countText() {
+            let text = document.getElementById("textInput").value;
+            document.getElementById("charCount").textContent = text.length;
+
+            let words = text.trim().split(/\s+/).filter(word => word !== "");
+            document.getElementById("wordCount").textContent = words.length;
+
+            let wordMap = {};
+            words.forEach(word => {
+                let lowerWord = word.toLowerCase();
+                wordMap[lowerWord] = (wordMap[lowerWord] || 0) + 1;
+            });
+
+            let repeated = Object.keys(wordMap).filter(word => wordMap[word] > 1);
+            document.getElementById("repeatedWords").textContent = repeated.length > 0 
+                ? repeated.join(", ") 
+                : "None";
+        }
+    </script>
+
+</body>
+</html>
