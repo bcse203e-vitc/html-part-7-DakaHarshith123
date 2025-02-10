@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Second & Third Largest</title>
+</head>
+<body>
+
+    <h2>Find Second & Third Largest Numbers</h2>
+
+    <input type="text" id="arrayInput" placeholder="Enter numbers (comma-separated)">
+    <button onclick="findLargestNumbers()">Find</button>
+
+    <h3>Second Largest: <span id="secondLargest"></span></h3>
+    <h3>Third Largest: <span id="thirdLargest"></span></h3>
+
+    <script>
+        function findLargestNumbers() {
+            let arr = [...new Set(document.getElementById("arrayInput").value
+                .split(",").map(num => parseFloat(num.trim())).filter(num => !isNaN(num)))];
+
+            arr.sort((a, b) => b - a);
+
+            document.getElementById("secondLargest").textContent = arr[1] !== undefined ? arr[1] : "N/A";
+            document.getElementById("thirdLargest").textContent = arr[2] !== undefined ? arr[2] : "N/A";
+        }
+    </script>
+
+</body>
+</html>
