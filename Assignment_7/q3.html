@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>SIMPLE CALCULATOR</title>
+</head>
+<body>
+<h2>SIMPLE CALCULATOR</h2>
+
+<label for="num1">Enter the first number:</label>
+<input type="number" id="num1">
+<br><br>
+
+<label for="num2">Enter the second number:</label>
+<input type="number" id="num2">
+<br><br>
+
+<label for="operation">Choose Operation:</label>
+<select id="operation">
+  <option value="Add">Addition</option>
+  <option value="Sub">Subtraction</option>
+  <option value="Div">Divison</option>
+  <option value="Mul">Multiplication</option>
+  <option value="Mod">Modulus</option>
+  <option value="Exp">Exponentional</option>
+</select>
+<button onclick="Calculate()">Calculate</button>
+<h3>Result:<span id="result"></span></h3>
+
+<script>
+  function Calculate(){
+    let num1= parseFloat(document.getElementById("num1").value);
+    let num2= parseFloat(document.getElementById("num2").value);
+    let operation = document.getElementById("operation").value;
+    let result;
+     if (isNaN(num1) || isNaN(num2)) {
+    document.getElementById("result").textContent = "Please enter valid numbers.";
+    return;
+}
+        else{
+          switch (operation){
+          case "Add":
+            result=num1+num2;
+            break;
+          case "Sub":
+             result = num1 - num2;
+             break;
+           case "Mul":
+             result = num1 * num2;
+              break;
+            case "Div":
+             result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+             break;
+              case "Mod":
+             result = num1 % num2;
+              break;
+              case "Exp":
+              result = num1 ** num2;
+              break;
+              default:
+              result = "Invalid operation";
+                }
+        }
+        document.getElementById("result").textContent = result;
+    
+      }
+       
+  
+</script>
+</body>
+</html>
+
