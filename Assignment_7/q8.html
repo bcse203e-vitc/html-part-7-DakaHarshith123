@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Without sort()</title>
+</head>
+<body>
+
+    <input type="text" id="arrayInput" placeholder="Enter numbers (comma-separated)">
+    <button onclick="sortArray(true)">Ascending</button>
+    <button onclick="sortArray(false)">Descending</button>
+    <h3>Sorted: <span id="sortedArray"></span></h3>
+
+    <script>
+        function sortArray(ascending) {
+            let arr = document.getElementById("arrayInput").value.split(",").map(Number);
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length - i - 1; j++) {
+                    if ((ascending && arr[j] > arr[j + 1]) || (!ascending && arr[j] < arr[j + 1])) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+            document.getElementById("sortedArray").textContent = arr.join(", ");
+        }
+    </script>
+
+</body>
+</html>
